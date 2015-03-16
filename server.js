@@ -1,5 +1,5 @@
 var WebSocketServer = require("ws").Server;
-var server = new WebSocketServer({port : 3000});
+var server = new WebSocketServer({port : 6000});
 
 var clients = [];
 
@@ -24,4 +24,4 @@ server.on("connection", function(ws) {
 
   });
 });
-console.log("listening on port 3000!")
+console.log("listening on port 6000!")
