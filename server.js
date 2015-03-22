@@ -2,8 +2,15 @@ var WebSocketServer = require("ws").Server;
 var server = new WebSocketServer({port : 7000});
 
 var clients = [];
+var history = [];
 
 server.on("connection", function(ws) {
+
+  if (history.length > 0){
+    history.forEach(function(msg) {
+      ws.send(msg);
+    })
+  }
 
   clients.push(ws);
 
@@ -15,6 +22,7 @@ server.on("connection", function(ws) {
 
   ws.on("message", function(input) {
 
+    history.push(input);
     processedInput = JSON.parse(input);
     console.log(processedInput.name + " : " + processedInput.text);
 
